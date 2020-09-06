@@ -12,15 +12,17 @@ class Poetry extends React.Component {
 
   // https://reactjs.org/docs/faq-ajax.html
   componentDidMount() {
-    fetch("https://poetrydb.org/author/Emily%20Dickinson/title")
+    fetch("https://poetrydb.org/linecount/4")
       .then(res => res.json())
       .then(
         (result) => {
-          const randomInt = Math.floor(Math.random() * result.length);
-          const poem = result[randomInt];
+          console.log(result)
+          const randomPoem = result[Math.floor(Math.random() * result.length)].lines;
+          console.log(randomPoem)
+
           this.setState({
             isLoaded: true,
-            poem: poem
+            poem: randomPoem
           });
         },
         (error) => {
@@ -40,14 +42,14 @@ class Poetry extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          {poem.title}
-          {/* {poems.map(poem => (
-            <li key={poem.title}>
-              {poem.title}
-            </li>
-          ))} */}
-        </ul>
+        <div>
+          
+           {poem.map(line => (
+            <p key={line}>
+              {line}
+            </p>
+          ))} 
+        </div>
       );
     }
   }
