@@ -12,10 +12,9 @@ class Poetry extends React.Component {
 
   // https://reactjs.org/docs/faq-ajax.html
   componentDidMount() {
-    fetch("https://poetrydb.org/linecount/4")
+    fetch("https://poetrydb.org/linecount/" + this.props.lines)
       .then(res => res.json())
-      .then(
-        (result) => {
+      .then(function(result) {
           console.log(result)
           const randomPoem = result[Math.floor(Math.random() * result.length)].lines;
           console.log(randomPoem)
@@ -24,7 +23,7 @@ class Poetry extends React.Component {
             isLoaded: true,
             poem: randomPoem
           });
-        },
+        }.bind(this), // Necessary for accessing this.props inside fetch()
         (error) => {
           this.setState({
             isLoaded: true,

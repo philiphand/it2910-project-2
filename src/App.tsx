@@ -20,7 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <Poetry/>
+      <Poetry lines="5"/>
     </div>
   );
 }
