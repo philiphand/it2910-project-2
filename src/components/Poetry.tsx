@@ -1,20 +1,29 @@
 import * as React from 'react';
 
-class Poetry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      poems: []
-    };
+type PoetryState = {
+  error: any,
+  isLoaded: boolean,
+  poem: string[] 
+}
+
+type Poem = { 
+  author: string, 
+  linecount: number,  
+  lines: string[],
+  title: string 
+};
+
+export class Poetry extends React.Component<PoetryState> {
+  state: PoetryState = {
+    error: null,
+    isLoaded: false,
+    poem: []
   }
 
-  // https://reactjs.org/docs/faq-ajax.html
   componentDidMount() {
-    fetch("https://poetrydb.org/linecount/" + this.props.lines)
+    fetch("https://poetrydb.org/linecount/4")
       .then(res => res.json())
-      .then(function(result) {
+      .then((result: Poem[]) => {
           console.log(result)
           const randomPoem = result[Math.floor(Math.random() * result.length)].lines;
           console.log(randomPoem)
@@ -23,7 +32,7 @@ class Poetry extends React.Component {
             isLoaded: true,
             poem: randomPoem
           });
-        }.bind(this), // Necessary for accessing this.props inside fetch()
+        },
         (error) => {
           this.setState({
             isLoaded: true,
@@ -42,8 +51,7 @@ class Poetry extends React.Component {
     } else {
       return (
         <div>
-          
-           {poem.map(line => (
+          {poem.map(line => (
             <p key={line}>
               {line}
             </p>
@@ -53,5 +61,3 @@ class Poetry extends React.Component {
     }
   }
 }
-
-export default Poetry;
