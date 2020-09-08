@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Poetry error="null" isLoaded={false} poem={[]} />
+      <Poetry lines = "4"/>
     </div>
   );
 }

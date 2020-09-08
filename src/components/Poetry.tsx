@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+type PoetryProps = {
+  lines: string
+}
+
 type PoetryState = {
   error: any,
   isLoaded: boolean,
@@ -13,15 +17,18 @@ type Poem = {
   title: string 
 };
 
-export class Poetry extends React.Component<PoetryState> {
-  state: PoetryState = {
-    error: null,
-    isLoaded: false,
-    poem: []
+export class Poetry extends React.Component<PoetryProps, PoetryState> {
+  constructor(props: PoetryProps) {
+    super(props)
+    this.state = {
+      error: null,
+      isLoaded: false,
+      poem: []
+    }
   }
 
   componentDidMount() {
-    fetch("https://poetrydb.org/linecount/4")
+    fetch("https://poetrydb.org/linecount/" + this.props.lines)
       .then(res => res.json())
       .then((result: Poem[]) => {
           console.log(result)
