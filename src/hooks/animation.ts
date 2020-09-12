@@ -26,5 +26,5 @@ export const useCanvasAnimation = (inputs: IInstallationInput, running: boolean,
             requestRef.current = requestAnimationFrame(animate)
 
         return () => cancelAnimationFrame(requestRef.current)
-    }, [inputs, running, draw, canvas]);
+    }, [inputs, running, draw, canvas, animate]);
 }
