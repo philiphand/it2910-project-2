@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { InstallationTemplate } from './installations/template/installation_template'
-import { templateDraw } from './installations/animations/template'
+import { InstallationTemplate } from './installations/template/template'
+import { templateDraw } from './installations/template/animation'
 import { MediaContext } from '../../mediaContext'
 
 export const Carousel:React.FunctionComponent<any> = () => {
@@ -23,7 +23,6 @@ export const Carousel:React.FunctionComponent<any> = () => {
                     }
                 }
             }
-            
         </MediaContext.Consumer>
         <button onClick={() => setRunInstallation(!runInstallation)}>KJØR</button>
     </div>)

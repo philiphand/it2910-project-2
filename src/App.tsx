@@ -23,6 +23,7 @@ class App extends Component<any, IAappState> {
         <Carousel></Carousel>
       </MediaContext.Provider>
       
+      <span>Hello</span>
       <MediaLine updateMediaHandler={(mediaHandler) => this.setState({ mediaHandler }) }></MediaLine>
     </div>
   );

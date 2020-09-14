@@ -6,7 +6,5 @@ export const InstallationTemplate:React.FunctionComponent<IInstallationProps> = 
     const canvasRef = React.createRef<HTMLCanvasElement>()
     useCanvasAnimation(inputs, running, draw, canvasRef)
 
-    return (<div>
-        <canvas width={width} height={height} ref={canvasRef}></canvas>
-    </div>)
+    return (<canvas width={width} height={height} ref={canvasRef}></canvas>)
 }
