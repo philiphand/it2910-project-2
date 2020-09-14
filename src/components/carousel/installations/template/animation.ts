@@ -61,6 +61,7 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
     ctx.closePath()
 
     ctx.strokeStyle = "fff";
+    ctx.lineWidth = 3;
     ctx.stroke()
     
     /**
