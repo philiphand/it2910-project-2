@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { InstallationTemplate } from './installations/template/template'
-import { templateDraw } from './installations/template/animation'
+import { draw } from './installations/template/animation'
 import { MediaContext } from '../../mediaContext'
+import { InstallationTemplate } from './installations/template/template'
 
 export const Carousel:React.FunctionComponent<any> = () => {
     const [runInstallation, setRunInstallation] = useState(false)
@@ -11,11 +11,14 @@ export const Carousel:React.FunctionComponent<any> = () => {
             {(mediaHandler) => {
                     if (mediaHandler) {
                         return (<InstallationTemplate 
-                            width={400} 
-                            height={400} 
-                            inputs={{ mediaHandler }} 
+                            config={{
+                                width: 600,
+                                height: 600,
+                                mediaHandler
+                            }}
+                            inputs={{ }} 
                             running={runInstallation} 
-                            draw={templateDraw}></InstallationTemplate>
+                            draw={draw}></InstallationTemplate>
                         )
                     }
                     else {

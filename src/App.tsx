@@ -18,12 +18,10 @@ class App extends Component<any, IAappState> {
 
   render = () => (
     <div>
-      <span>It works!</span>
       <MediaContext.Provider value={this.state.mediaHandler}>
         <Carousel></Carousel>
       </MediaContext.Provider>
       
-      <span>Hello</span>
       <MediaLine updateMediaHandler={(mediaHandler) => this.setState({ mediaHandler }) }></MediaLine>
     </div>
   );

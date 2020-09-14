@@ -9,7 +9,6 @@ export const MediaLine:React.FunctionComponent<IMediaLineProps> = ({ updateMedia
     const audioRef = React.createRef<HTMLAudioElement>()
 
     useEffect(() => {
-        console.log(audioRef)
         if (audioRef.current !== null) {
             let handler = new MediaHandler(audioRef.current)
             updateMediaHandler(handler)

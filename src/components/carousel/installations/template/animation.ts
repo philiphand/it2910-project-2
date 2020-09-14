@@ -1,50 +1,72 @@
-import { IInstallationInput } from "../../../../interfaces/installations"
-import { IRgbaColor } from "../../../../util/colors"
-import { ColorUtil } from "../../../../util/colors"
+import { IAnimationTiming } from "../../../../hooks/animation"
+import { IInstallationConfig, IInstallationInput } from "../../../../interfaces/installations"
 
-export const templateDraw = (inputs: IInstallationInput, ctx: CanvasRenderingContext2D) => {
-    ctx.clearRect(0, 0, 1000, 1000)
-    
-    let data = inputs.mediaHandler.getByteFrequencyData()
-    drawFrequencyBars(data, ctx, 400,400)
+export interface ITemplateInputs extends IInstallationInput {
+    rgbTweenProgress: number
 }
 
-//TODO: Replace with inputs
-const NUM_BARS = 256;
-const FROM_COLOR: IRgbaColor = { r: 0, g: 219, b: 222, a: .8 }
-const TO_COLOR: IRgbaColor = { r: 252, g: 0, b: 255, a: .8 }
-
-const drawFrequencyBars = (data: Uint8Array, ctx: CanvasRenderingContext2D, width: number, height: number) => {
-    let scaling = (Math.min(width, height) / 2) / 256
-
-    for (let i = 0; i < data.length; i++) {
-        let rotation = (360 / NUM_BARS)
-        let fill
-        if (i <= NUM_BARS / 2) {
-            let reach = data[i] * scaling + 20
-            fill = ColorUtil.rgbTweenString(FROM_COLOR, TO_COLOR, 2 * i / NUM_BARS, 0.8)
-            drawFrequencyTriangle(ctx, rotation, reach, fill)
-        }
-        else {
-            let reach = data[128 + (-i + 128)] * scaling + 20
-            fill = ColorUtil.rgbTweenString(TO_COLOR, FROM_COLOR, (i * 2 - 256) / NUM_BARS, 0.8)
-            drawFrequencyTriangle(ctx, rotation, reach, fill)
-        }
+export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inputs: IInstallationInput, ctx: CanvasRenderingContext2D) => {
+    const center = {
+        x: config.width/2,
+        y: config.height/2
     }
-}
+    
+    /**
+     * Clear the canvas for every frame
+     */
+    ctx.clearRect(0, 0, config.width, config.height)
 
-const drawFrequencyTriangle = (ctx: CanvasRenderingContext2D, rotation: number, reach: number, fill:string ) => {
+    /**
+     * Do one full turn every three seconds
+     */
+    let rotateBy = (timing.delta)/3000
+
+    /**
+     * Move to the center of the canvas
+     * Rotate the context by the specified amount
+     * Move back to the upper left corner before drawing
+     */
+    ctx.translate(center.x, center.y)
+    ctx.rotate(rotateBy*Math.PI)
+    ctx.translate(-center.x, -center.y)
+
+    /**
+     * Draw from the top left to the bottom right
+     * This is in relation to the rotated context, naturally
+     */
     ctx.beginPath()
-    ctx.moveTo(200, 200)
-    ctx.lineTo(200+(400/320), 200 + reach)
-    ctx.lineTo(200-(400/320), 200 + reach)
-    ctx.lineTo(200, 200)
+        ctx.moveTo(config.width/4,config.height/4)
+        /**
+         * Moves to here:
+         * |------------------|
+         * |                  |
+         * |    x             |
+         * |                  |
+         * |                  |
+         * |                  |
+         * |------------------|
+         */
+
+        ctx.lineTo((config.width/4)*3, (config.height/4)*3)
+        /**
+         * Draws line between points:
+         * |------------------|
+         * |                  |
+         * |    x             |
+         * |                  |
+         * |            x     |
+         * |                  |
+         * |------------------|
+         */
     ctx.closePath()
 
-    ctx.fillStyle = fill
-    ctx.fill()
-
-    ctx.translate(200, 200)
-    ctx.rotate(((Math.PI) / 180)*rotation)
-    ctx.translate(-200, -200)
+    ctx.strokeStyle = "fff";
+    ctx.stroke()
+    
+    /**
+     * OPTIONAL
+     * Use the media handler from the config to fetch data about the current track
+     * if needed
+     */
+    const data = config.mediaHandler.getByteFrequencyData()
 }
