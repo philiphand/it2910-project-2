@@ -31,10 +31,7 @@ export class Poetry extends React.Component<PoetryProps, PoetryState> {
     fetch("https://poetrydb.org/linecount/" + this.props.lines)
       .then(res => res.json())
       .then((result: Poem[]) => {
-          console.log(result)
           const randomPoem = result[Math.floor(Math.random() * result.length)].lines;
-          console.log(randomPoem)
-
           this.setState({
             isLoaded: true,
             poem: randomPoem
