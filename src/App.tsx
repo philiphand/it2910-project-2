@@ -4,7 +4,7 @@ import { Carousel } from './components/carousel/carousel';
 import { MediaLine } from './components/media-line/media-line';
 import { MediaHandler } from './components/media-line/media';
 import { MediaContext } from './mediaContext';
-import { Poetry } from './components/Poetry';
+import { Poetry } from './components/poetry/poetry';
 
 interface IAappState {
   mediaHandler: MediaHandler | null
