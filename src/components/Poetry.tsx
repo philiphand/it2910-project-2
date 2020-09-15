@@ -55,8 +55,8 @@ export class Poetry extends React.Component<PoetryProps, PoetryState> {
     } else {
       return (
         <div>
-          {poem.map(line => (
-            <p key={line}>
+          {poem.map((line, index) => (
+            <p key={index}>
               {line}
             </p>
           ))} 
