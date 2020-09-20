@@ -1,5 +1,6 @@
 import { IAnimationTiming } from "../../../../hooks/animation"
 import { IInstallationConfig, IInstallationInput } from "../../../../interfaces/installations"
+import { ColorUtil } from "../../../../util/colors"
 
 export interface ITemplateInputs extends IInstallationInput {
     rgbTweenProgress: number
@@ -16,10 +17,10 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
      */
 
     const gradient = ctx.createLinearGradient(0,config.height/2, config.width, config.height/2)
-    gradient.addColorStop(0, "rgba(0,163,249,0)")
-    gradient.addColorStop(0.1, "rgba(0,163,249,.9)")
-    gradient.addColorStop(0.9, "rgba(0,249,109,.9)")
-    gradient.addColorStop(1, "rgba(0,249,109,0)")
+    gradient.addColorStop(0, ColorUtil.rgbaString({ ...inputs.rgbaFrom, a: 0 }))
+    gradient.addColorStop(0.1, ColorUtil.rgbaString(inputs.rgbaFrom))
+    gradient.addColorStop(0.9, ColorUtil.rgbaString(inputs.rgbaTo))
+    gradient.addColorStop(1, ColorUtil.rgbaString({ ...inputs.rgbaTo, a: 0 }))
 
     /**
      * https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API#Creating_a_waveformoscilloscope
