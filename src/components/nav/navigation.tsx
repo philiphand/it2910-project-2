@@ -5,17 +5,19 @@ import { MediaLine } from "./media-line/media-line"
 
 import "./navigation.css"
 import sliders from "../../img/sliders.svg"
+import { IInstallationInput } from "../../interfaces/installations"
 
 export interface INaviagtionProps {
-    setMediaAnalyser: (mediaAnalyser: MediaAnalyser) => void
+    setMediaAnalyser: (mediaAnalyser: MediaAnalyser) => void,
+    updateInputs: (inputs: IInstallationInput) => void
 }
 
-export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaAnalyser}) => {
+export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaAnalyser, updateInputs}) => {
     let [inputOpen, setInputOpen] = useState(false)
 
     return (<nav>
         <div className={`input ${inputOpen ? 'open' : 'closed'}`}>
-            <InstallationInput></InstallationInput>
+            <InstallationInput updateInputs={updateInputs}></InstallationInput>
         </div>
 
         <div className="navigation-line">

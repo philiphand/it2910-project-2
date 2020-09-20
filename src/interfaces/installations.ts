@@ -1,5 +1,6 @@
 import { MediaAnalyser } from "../components/nav/media-line/analyser";
 import { IAnimationTiming } from "../hooks/animation";
+import { IRgbaColor } from "../util/colors";
 
 export interface IInstallationProps {
     config: IInstallationConfig,
@@ -14,7 +15,8 @@ export type AnimationFunction = (
     ctx: CanvasRenderingContext2D) => void
 
 export interface IInstallationInput {
-    
+    rgbaFrom: IRgbaColor,
+    rgbaTo: IRgbaColor
 }
 
 export interface IInstallationConfig {

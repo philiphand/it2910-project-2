@@ -1,13 +1,18 @@
 import React, { useContext } from 'react'
 import { MediaContext } from '../../mediaContext'
-import { InstallationTemplate } from './installations/template/template'
-import "./carousel.css"
+import { InputContext } from '../../inputContext'
+
 import { OscilliscopeInstallation } from './installations/oscilliscope/oscilliscope'
-import { Poetry } from '../poetry/poetry'
 import { Hypnotizer } from './installations/hypnotizer/template'
+import { FrequencyBallInstallation } from './installations/frequencyball/frequency-ball'
+
+import { Poetry } from '../poetry/poetry'
+
+import "./carousel.css"
 
 export const Carousel:React.FunctionComponent<any> = () => {
     const mediaAnalyser = useContext(MediaContext)
+    const inputs = useContext(InputContext)
 
     if (!mediaAnalyser)
         return <div className="waiting-for-media">Press play to see the animation</div>
@@ -19,8 +24,17 @@ export const Carousel:React.FunctionComponent<any> = () => {
                 height: 400,
                 mediaAnalyser
             }}
-            inputs={{ }} 
+            inputs={inputs} 
             running={true}></OscilliscopeInstallation>
+
+        <FrequencyBallInstallation 
+            config={{
+                width: 400,
+                height: 400,
+                mediaAnalyser
+            }}
+            inputs={inputs} 
+            running={true}></FrequencyBallInstallation>
 
         <Hypnotizer
             config={{
@@ -28,17 +42,8 @@ export const Carousel:React.FunctionComponent<any> = () => {
                 height: 400,
                 mediaAnalyser
             }}
-            inputs={{ }} 
+            inputs={inputs} 
             running={true}></Hypnotizer>
-        
-        <InstallationTemplate 
-            config={{
-                width: 400,
-                height: 400,
-                mediaAnalyser
-            }}
-            inputs={{ }} 
-            running={true}></InstallationTemplate>
 
         <Poetry lines="4"></Poetry>
     </div>)
