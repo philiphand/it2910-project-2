@@ -1,10 +1,9 @@
-import { MediaHandler } from "../components/media-line/media";
+import { MediaAnalyser } from "../components/nav/media-line/analyser";
 import { IAnimationTiming } from "../hooks/animation";
 
 export interface IInstallationProps {
     config: IInstallationConfig,
     inputs: IInstallationInput,
-    draw: AnimationFunction,
     running: boolean
 }
 
@@ -21,5 +20,5 @@ export interface IInstallationInput {
 export interface IInstallationConfig {
     width: number,
     height: number,
-    mediaHandler: MediaHandler
+    mediaAnalyser: MediaAnalyser
 }

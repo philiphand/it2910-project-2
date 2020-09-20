@@ -1,4 +1,13 @@
 .poem {
     white-space: pre;
     line-height: 160%;
+    font-family: "Vollkorn";
+    font-style: italic;
+    font-size: 36px;
+    text-shadow: 2px 2px black;
+    text-rendering: optimizeLegibility;
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
 }

@@ -1,4 +1,4 @@
 import React from "react";
-import { MediaHandler } from "./components/media-line/media";
+import { MediaAnalyser } from "./components/nav/media-line/analyser";
 
-export const MediaContext = React.createContext<MediaHandler | null>(null);
+export const MediaContext = React.createContext<MediaAnalyser | null>(null);

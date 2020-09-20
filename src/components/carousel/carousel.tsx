@@ -1,32 +1,34 @@
-import React, { useState } from 'react'
-import { draw } from './installations/template/animation'
+import React, { useContext } from 'react'
 import { MediaContext } from '../../mediaContext'
 import { InstallationTemplate } from './installations/template/template'
+import "./carousel.css"
+import { OscilliscopeInstallation } from './installations/oscilliscope/oscilliscope'
+import { Poetry } from '../poetry/poetry'
 
 export const Carousel:React.FunctionComponent<any> = () => {
-    const [runInstallation, setRunInstallation] = useState(false)
+    const mediaAnalyser = useContext(MediaContext)
 
-    return (<div>
-        <MediaContext.Consumer>
-            {(mediaHandler) => {
-                    if (mediaHandler) {
-                        return (<InstallationTemplate 
-                            config={{
-                                width: 600,
-                                height: 600,
-                                mediaHandler
-                            }}
-                            inputs={{ }} 
-                            running={runInstallation} 
-                            draw={draw}></InstallationTemplate>
-                        )
-                    }
-                    else {
-                        return (<div>Loading...</div>)
-                    }
-                }
-            }
-        </MediaContext.Consumer>
-        <button onClick={() => setRunInstallation(!runInstallation)}>KJØR</button>
+    if (!mediaAnalyser)
+        return <div className="waiting-for-media">Press play to see the animation</div>
+
+    return (<div className="carousel">
+        <OscilliscopeInstallation 
+            config={{
+                width: 1000,
+                height: 400,
+                mediaAnalyser
+            }}
+            inputs={{ }} 
+            running={true}></OscilliscopeInstallation>
+        <InstallationTemplate 
+            config={{
+                width: 400,
+                height: 400,
+                mediaAnalyser
+            }}
+            inputs={{ }} 
+            running={true}></InstallationTemplate>
+
+        <Poetry lines="4"></Poetry>
     </div>)
 }

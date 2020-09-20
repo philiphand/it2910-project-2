@@ -7,7 +7,7 @@ import { ColorUtil } from "../../../../util/colors"
 export const draw = (animationTiming: IAnimationTiming, config: IInstallationConfig, inputs: IInstallationInput, ctx: CanvasRenderingContext2D) => {
     ctx.clearRect(0, 0, 1000, 1000)
     
-    let data = config.mediaHandler.getByteFrequencyData()
+    let data = config.mediaAnalyser.getByteFrequencyData()
     drawFrequencyBars(data, ctx, 400,400)
 }
 
