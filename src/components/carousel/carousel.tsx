@@ -4,6 +4,7 @@ import { InstallationTemplate } from './installations/template/template'
 import "./carousel.css"
 import { OscilliscopeInstallation } from './installations/oscilliscope/oscilliscope'
 import { Poetry } from '../poetry/poetry'
+import { Hypnotizer } from './installations/hypnotizer/template'
 
 export const Carousel:React.FunctionComponent<any> = () => {
     const mediaAnalyser = useContext(MediaContext)
@@ -20,6 +21,16 @@ export const Carousel:React.FunctionComponent<any> = () => {
             }}
             inputs={{ }} 
             running={true}></OscilliscopeInstallation>
+
+        <Hypnotizer
+            config={{
+                width: 1000,
+                height: 400,
+                mediaAnalyser
+            }}
+            inputs={{ }} 
+            running={true}></Hypnotizer>
+        
         <InstallationTemplate 
             config={{
                 width: 400,
