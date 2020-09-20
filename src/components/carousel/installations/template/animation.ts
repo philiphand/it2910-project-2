@@ -60,14 +60,14 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
          */
     ctx.closePath()
 
-    ctx.strokeStyle = "fff";
+    ctx.strokeStyle = "#fff";
     ctx.lineWidth = 3;
     ctx.stroke()
     
     /**
      * OPTIONAL
      * Use the media handler from the config to fetch data about the current track
-     * if needed
+     * if needed. See oscilliscope for an example.
      */
-    const data = config.mediaHandler.getByteFrequencyData()
+    config.mediaAnalyser.getByteFrequencyData()
 }

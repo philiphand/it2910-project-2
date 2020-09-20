@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 import { IInstallationInput, AnimationFunction, IInstallationConfig } from "../interfaces/installations"
 
 export interface IAnimationTiming {
@@ -12,7 +12,7 @@ export const useCanvasAnimation = (config: IInstallationConfig, inputs: IInstall
     const requestRef = React.useRef<number>(-1)
     const previousFrameTime = React.useRef<DOMHighResTimeStamp>(-1)
 
-    const animate:FrameRequestCallback = (time: DOMHighResTimeStamp) => {
+    const animate = useCallback<FrameRequestCallback>((time: DOMHighResTimeStamp) => {
         let time_delta = 0
         if (previousFrameTime.current > 0)
             time_delta = time - previousFrameTime.current
@@ -30,7 +30,7 @@ export const useCanvasAnimation = (config: IInstallationConfig, inputs: IInstall
             draw(animationTiming, config, inputs, ctx_instance)
 
         requestRef.current = requestAnimationFrame(animate)
-    }
+    }, [draw, previousFrameTime, ctx, config, inputs])
     
     useEffect(() => {
         let canvasElement = canvas.current

@@ -1,0 +1,33 @@
+.media-controls {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+}
+
+.media-controls img {
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.media-controls .elapsed-wrapper {
+    position: relative;
+}
+
+.media-controls .elapsed-wrapper .duration-line {
+    height: 8px;
+    background: linear-gradient(90deg, rgba(0,163,249,.9), rgba(0,249,109,.9));
+    border-radius: 8px;
+    margin: 0 8px;
+}
+
+.media-controls .elapsed-wrapper .elapsed-dot {
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: calc(50% - 10px);
+    transition: all 250ms linear;
+    
+    border-radius: 50%;
+    background: linear-gradient(#fff, #ccc);
+}
