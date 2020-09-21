@@ -1,8 +1,12 @@
-import React from "react";
-import { render, fireEvent, waitForElement } from "@testing-library/react";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import {Carousel} from '../components/carousel/carousel';
 
-describe("<App />", () => {
-  test("should display a blank login form, with remember me checked by default", async () => {
-    // ???
-  });
+test('renders correctly', () => {
+  const component = renderer
+    .create(<Carousel></Carousel>);
+  let tree = component.toJSON()
+  expect(tree).toMatchSnapshot();
+
+
 });
