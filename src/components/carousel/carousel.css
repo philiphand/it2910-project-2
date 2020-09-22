@@ -47,4 +47,5 @@
     flex-direction: row;
     width: fit-content;
     transition: transform 800ms;
+    transform: translateX(-1000px);
 }
