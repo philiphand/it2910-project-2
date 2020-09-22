@@ -18,12 +18,12 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
             <div className="color-picker-wrapper">
                 <div className="from">
                     <span>From</span>
-                    <ColorPicker color={inputs.rgbaFrom} updateColor={(color) => { updateInputs({...inputs, rgbaFrom: color}) } }></ColorPicker>
+                    <ColorPicker color={inputs.rgbaFrom} updateColor={(color) => { updateInputs({...inputs, rgbaFrom: color}) } } toOrFrom="from"></ColorPicker>
                 </div>
                 
                 <div className="to">
                     <span>To</span>
-                    <ColorPicker color={inputs.rgbaTo} updateColor={(color) => { updateInputs({...inputs, rgbaTo: color}) } }></ColorPicker>
+                    <ColorPicker color={inputs.rgbaTo} updateColor={(color) => { updateInputs({...inputs, rgbaTo: color}) } } toOrFrom="to"></ColorPicker>
                 </div>
             </div>
         </section>

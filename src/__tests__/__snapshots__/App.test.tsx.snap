@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`App renders correctly 1`] = `
 <section
   id="app"
 >
@@ -12,6 +12,7 @@ exports[`renders correctly 1`] = `
   <nav>
     <div
       className="input closed"
+      data-testid="inputMenu"
     >
       <div
         className="input"
@@ -39,6 +40,7 @@ exports[`renders correctly 1`] = `
                     R
                   </label>
                   <input
+                    data-testid="fromColorR"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -51,6 +53,7 @@ exports[`renders correctly 1`] = `
                     G
                   </label>
                   <input
+                    data-testid="fromColorG"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -63,6 +66,7 @@ exports[`renders correctly 1`] = `
                     B
                   </label>
                   <input
+                    data-testid="fromColorB"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -75,6 +79,7 @@ exports[`renders correctly 1`] = `
                     A
                   </label>
                   <input
+                    data-testid="fromColorA"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -84,6 +89,7 @@ exports[`renders correctly 1`] = `
                 </div>
                 <div
                   className="preview"
+                  data-testid="fromColorPreview"
                   style={
                     Object {
                       "background": "rgba(0, 163, 249, 0.9)",
@@ -106,6 +112,7 @@ exports[`renders correctly 1`] = `
                     R
                   </label>
                   <input
+                    data-testid="toColorR"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -118,6 +125,7 @@ exports[`renders correctly 1`] = `
                     G
                   </label>
                   <input
+                    data-testid="toColorG"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -130,6 +138,7 @@ exports[`renders correctly 1`] = `
                     B
                   </label>
                   <input
+                    data-testid="toColorB"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -142,6 +151,7 @@ exports[`renders correctly 1`] = `
                     A
                   </label>
                   <input
+                    data-testid="toColorA"
                     max="255"
                     min="0"
                     onChange={[Function]}
@@ -151,6 +161,7 @@ exports[`renders correctly 1`] = `
                 </div>
                 <div
                   className="preview"
+                  data-testid="toColorPreview"
                   style={
                     Object {
                       "background": "rgba(0, 249, 109, 0.9)",
