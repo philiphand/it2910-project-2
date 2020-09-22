@@ -26,7 +26,7 @@ class App extends Component<any, IAappState> {
     <section id="app">
       <MediaContext.Provider value={this.state.mediaAnalyser}>
         <InputContext.Provider value={this.state.inputs}>
-          <Carousel></Carousel>
+          <Carousel />
 
           <Navigation
             setMediaAnalyser={(mediaAnalyser) => this.setState({ ...this.state, mediaAnalyser }) }
