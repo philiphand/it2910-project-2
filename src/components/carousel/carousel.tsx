@@ -7,6 +7,7 @@ import NextIcon from "../../img/next.svg";
 import { OscilliscopeInstallation } from "./installations/oscilliscope/oscilliscope";
 import { Hypnotizer } from "./installations/hypnotizer/template";
 import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
+import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
 
 import { Poetry } from "../poetry/poetry";
 
@@ -145,7 +146,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(2)}
           />
 
-          <Hypnotizer
+          <EqualizerBarsInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -153,6 +154,16 @@ export const Carousel: React.FunctionComponent<any> = () => {
             }}
             inputs={inputs}
             running={animatedItems.includes(3)}
+          />
+
+          <Hypnotizer
+            config={{
+              width: itemWidth,
+              height: itemHeight,
+              mediaAnalyser,
+            }}
+            inputs={inputs}
+            running={animatedItems.includes(4)}
           />
 
           {/* duplicate */}
@@ -163,7 +174,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
               mediaAnalyser,
             }}
             inputs={inputs}
-            running={animatedItems.includes(4)}
+            running={animatedItems.includes(5)}
           />
           {/* ----------*/}
         </div>
