@@ -5,6 +5,11 @@ import { ColorUtil } from "../../../../util/colors"
 const NUM_BARS = 256;
 
 export const draw = (animationTiming: IAnimationTiming, config: IInstallationConfig, inputs: IInstallationInput, ctx: CanvasRenderingContext2D) => {
+    const center = {
+        x: config.width/2,
+        y: config.height/2
+    }
+    
     ctx.clearRect(0, 0, 1000, 1000)
     
     let data = config.mediaAnalyser.getByteFrequencyData()
@@ -17,28 +22,28 @@ export const draw = (animationTiming: IAnimationTiming, config: IInstallationCon
         if (i <= NUM_BARS / 2) {
             let reach = data[i] * scaling + 20
             fill = ColorUtil.rgbTweenString(inputs.rgbaFrom, inputs.rgbaTo, 2 * i / NUM_BARS, 0.8)
-            drawFrequencyTriangle(ctx, rotation, reach, fill)
+            drawFrequencyTriangle(ctx, rotation, reach, fill, center)
         }
         else {
             let reach = data[128 + (-i + 128)] * scaling + 20
             fill = ColorUtil.rgbTweenString(inputs.rgbaTo, inputs.rgbaFrom, (i * 2 - 256) / NUM_BARS, 0.8)
-            drawFrequencyTriangle(ctx, rotation, reach, fill)
+            drawFrequencyTriangle(ctx, rotation, reach, fill, center)
         }
     }
 }
 
-const drawFrequencyTriangle = (ctx: CanvasRenderingContext2D, rotation: number, reach: number, fill:string ) => {
+const drawFrequencyTriangle = (ctx: CanvasRenderingContext2D, rotation: number, reach: number, fill:string, center: { x: number, y: number} ) => {
     ctx.beginPath()
-    ctx.moveTo(200, 200)
-    ctx.lineTo(200+(400/320), 200 + reach)
-    ctx.lineTo(200-(400/320), 200 + reach)
-    ctx.lineTo(200, 200)
+    ctx.moveTo(center.x, center.y)
+    ctx.lineTo(center.x+(400/320), center.y + reach)
+    ctx.lineTo(center.x-(400/320), center.y + reach)
+    ctx.lineTo(center.x, center.y)
     ctx.closePath()
 
     ctx.fillStyle = fill
     ctx.fill()
 
-    ctx.translate(200, 200)
+    ctx.translate(center.x, center.y)
     ctx.rotate(((Math.PI) / 180)*rotation)
-    ctx.translate(-200, -200)
+    ctx.translate(-center.x, -center.y)
 }
