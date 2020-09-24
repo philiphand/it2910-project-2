@@ -16,7 +16,7 @@ export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaA
     let [inputOpen, setInputOpen] = useState(false)
 
     return (<nav>
-        <div className={`input ${inputOpen ? 'open' : 'closed'}`}>
+        <div className={`input ${inputOpen ? 'open' : 'closed'}`} data-testid="inputMenu">
             <InstallationInput updateInputs={updateInputs}></InstallationInput>
         </div>
 
