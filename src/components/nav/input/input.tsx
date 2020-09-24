@@ -42,6 +42,7 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
                 onChange={(e) => { 
                     updateInputs({...inputs, complexity: parseInt(e.target.value)}) 
                     media?.setComplexity(parseInt(e.target.value))
+                    localStorage.setItem('complexity',e.target.value.toString())
                 }}></input>
         </section>
 

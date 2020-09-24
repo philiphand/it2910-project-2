@@ -5,7 +5,7 @@ import { InputContext } from "../../inputContext";
 import NextIcon from "../../img/next.svg";
 
 import { OscilliscopeInstallation } from "./installations/oscilliscope/oscilliscope";
-import { Hypnotizer } from "./installations/hypnotizer/template";
+import { HypnotizerInstallation } from "./installations/hypnotizer/template";
 import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
 import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
 
@@ -115,7 +115,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
       <div className="view-port">
         <div className="items" ref={items}>
           {/* duplicate */}
-          <Hypnotizer
+          <HypnotizerInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -156,7 +156,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(3)}
           />
 
-          <Hypnotizer
+          <HypnotizerInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
