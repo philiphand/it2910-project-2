@@ -17,6 +17,7 @@ export type AnimationFunction = (
 export interface IInstallationInput {
     rgbaFrom: IRgbaColor,
     rgbaTo: IRgbaColor,
+    complexity: number,
     song: string
 }
 

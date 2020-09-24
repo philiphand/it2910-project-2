@@ -13,6 +13,7 @@ export class MediaAnalyser {
         this.analyser = this.audioCtx.createAnalyser();
         this.analyser.fftSize = 512;
         this.bufferLength = this.analyser.frequencyBinCount;
+        console.log(this.analyser.frequencyBinCount)
 
         this.source = this.audioCtx.createMediaElementSource(this.AudioElement);
         this.source.connect(this.analyser);
@@ -43,5 +44,12 @@ export class MediaAnalyser {
         else {
             return new Uint8Array(0)
         }
+    }
+
+    setComplexity(complexity: number) {
+        this.analyser.fftSize = Math.pow(2, complexity+1)
+        this.byteFrequencyData = new Uint8Array(this.analyser.frequencyBinCount)
+        this.byteTimeDomainData = new Uint8Array(this.analyser.frequencyBinCount)
+        this.bufferLength = this.analyser.frequencyBinCount
     }
 }

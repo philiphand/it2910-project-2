@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { InputContext } from '../../../inputContext'
 import { IInstallationInput } from '../../../interfaces/installations'
+import { MediaContext } from '../../../mediaContext'
 import { ColorPicker } from './color-picker/color-picker'
 import { SongPicker } from './song-picker/song-picker'
 
@@ -12,6 +13,7 @@ export interface IInputComponentProps {
 
 export const InstallationInput: React.FunctionComponent<IInputComponentProps> = ({ updateInputs }) => {
     let inputs = useContext(InputContext)
+    let media = useContext(MediaContext)
 
     return (<div className="input">
         <section className="colors">
@@ -31,6 +33,16 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
 
         <section className="complexity">
             <h2>Complexity</h2>
+            <input 
+                type="range" 
+                min="4" 
+                max="10" 
+                step="1" 
+                value={inputs.complexity} 
+                onChange={(e) => { 
+                    updateInputs({...inputs, complexity: parseInt(e.target.value)}) 
+                    media?.setComplexity(parseInt(e.target.value))
+                }}></input>
         </section>
 
         <section className="song">
