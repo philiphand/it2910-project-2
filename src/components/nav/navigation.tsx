@@ -9,10 +9,11 @@ import { IInstallationInput } from "../../interfaces/installations"
 
 export interface INaviagtionProps {
     setMediaAnalyser: (mediaAnalyser: MediaAnalyser) => void,
-    updateInputs: (inputs: IInstallationInput) => void
+    updateInputs: (inputs: IInstallationInput) => void,
+    inputs: IInstallationInput
 }
 
-export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaAnalyser, updateInputs}) => {
+export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaAnalyser, updateInputs, inputs}) => {
     let [inputOpen, setInputOpen] = useState(false)
 
     return (<nav>
@@ -30,7 +31,7 @@ export const Navigation: React.FunctionComponent<INaviagtionProps> = ({setMediaA
                 alt="Input"/>
             
             <div className="media">
-                <MediaLine setMediaAnalyser={setMediaAnalyser}></MediaLine>
+                <MediaLine setMediaAnalyser={setMediaAnalyser} inputs={inputs}></MediaLine>
             </div>
         </div>
     </nav>)

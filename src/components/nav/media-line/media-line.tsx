@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
+import { IInstallationInput } from '../../../interfaces/installations'
 import { MediaAnalyser } from './analyser'
 import { MediaControls } from './media-controls/media-controls'
 
 
-
 export interface IMediaLineProps {
     setMediaAnalyser: (handler: MediaAnalyser) => void
+    inputs: IInstallationInput
 }
 
-export const MediaLine:React.FunctionComponent<IMediaLineProps> = ({ setMediaAnalyser }) => {
+export const MediaLine:React.FunctionComponent<IMediaLineProps> = ({ setMediaAnalyser, inputs}) => {
     const audioRef = React.createRef<HTMLAudioElement>()
     
     let [analyserSet, setAnalyserSet] = useState(false)
@@ -33,12 +34,15 @@ export const MediaLine:React.FunctionComponent<IMediaLineProps> = ({ setMediaAna
         if (audioRef.current) {
             setDuration(audioRef.current.duration)
         }
+        if (playing) {
+            play()
+        }
     }
 
     return (<div>
         <audio 
             ref={audioRef} 
-            src={"/media/Dreams (2004 Remaster).mp3"}
+            src={inputs.song}
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
             onTimeUpdate={() => setElapsed(audioRef.current?.currentTime || 0)}
