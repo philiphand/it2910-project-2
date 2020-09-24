@@ -2,7 +2,7 @@
     padding: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
@@ -14,10 +14,12 @@
 .input section {
     padding: 0px 20px;
     border-right: 1px solid rgba(255,255,255,.1);
+    width: 310px;
+    height: 305px;
 }
 
-.input section.colors {
-
+.input section:last-child {
+    border-right: none;
 }
 
 .color-picker-wrapper {

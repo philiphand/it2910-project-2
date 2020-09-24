@@ -31,10 +31,10 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
     ctx.strokeStyle = gradient
     ctx.beginPath()
 
-    var sliceWidth = config.width * 1.0 / config.mediaAnalyser.bufferLength;
+    var sliceWidth = config.width * 1.0 / data.length;
     var x = 0;
 
-    for(var i = 0; i < config.mediaAnalyser.bufferLength; i++) {
+    for(var i = 0; i < data.length; i++) {
         var v = data[i] / 128.0;
         var y = v * config.height/2;
 
