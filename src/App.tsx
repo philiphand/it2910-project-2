@@ -6,6 +6,7 @@ import { MediaContext } from './mediaContext';
 import { Navigation } from './components/nav/navigation';
 import { DefaultInputs, InputContext } from './inputContext';
 import { IInstallationInput } from './interfaces/installations';
+const fetch = require("node-fetch");
 
 interface IAappState {
   mediaAnalyser: MediaAnalyser | null,

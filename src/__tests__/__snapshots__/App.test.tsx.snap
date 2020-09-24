@@ -178,13 +178,57 @@ exports[`App renders correctly 1`] = `
           <h2>
             Complexity
           </h2>
+          <input
+            max="10"
+            min="4"
+            onChange={[Function]}
+            step="1"
+            type="range"
+            value={8}
+          />
         </section>
         <section
-          className="complexity"
+          className="song"
         >
           <h2>
-            Third input
+            Song
           </h2>
+          <div
+            className="song-picker"
+          >
+            <select
+              defaultValue="/media/Dreams (2004 Remaster).mp3"
+              id="songs"
+              name="songs"
+              onChange={[Function]}
+            >
+              <option
+                value="/media/Back To The Future Jellyfish - NoMBe.mp3"
+              >
+                Back To The Future Jellyfish - NoMBe
+              </option>
+              <option
+                value="/media/Dreams (2004 Remaster).mp3"
+              >
+                Dreams (2004 Remaster)
+              </option>
+              <option
+                value="/media/Lofi Mallet - Kwon.mp3"
+              >
+                Lofi Mallet - Kwon
+              </option>
+              <option
+                value="/media/Messiah (by Handel) - Handel.mp3"
+              >
+                Messiah (by Handel) - Handel
+              </option>
+              <option
+                value="/media/Toccata in D minor (by Bach) - Bach.mp3"
+              >
+                Toccata in D minor (by Bach) - Bach
+              </option>
+            </select>
+          </div>
         </section>
       </div>
     </div>
