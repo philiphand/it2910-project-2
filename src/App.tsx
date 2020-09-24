@@ -30,7 +30,8 @@ class App extends Component<any, IAappState> {
 
           <Navigation
             setMediaAnalyser={(mediaAnalyser) => this.setState({ ...this.state, mediaAnalyser }) }
-            updateInputs={(inputs) => this.setState({...this.state, inputs})}>
+            updateInputs={(inputs) => this.setState({...this.state, inputs})}
+            inputs={this.state.inputs}>
           </Navigation>
         </InputContext.Provider>
       </MediaContext.Provider>

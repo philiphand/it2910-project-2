@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { InputContext } from '../../../inputContext'
 import { IInstallationInput } from '../../../interfaces/installations'
 import { ColorPicker } from './color-picker/color-picker'
+import { SongPicker } from './song-picker/song-picker'
 
 import './input.css'
 
@@ -32,8 +33,9 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
             <h2>Complexity</h2>
         </section>
 
-        <section className="complexity">
-            <h2>Third input</h2>
+        <section className="song">
+            <h2>Song</h2>
+            <SongPicker song={inputs.song} updateSong={(song) => { updateInputs({...inputs, song: song})}} />
         </section>
     </div>)
 }
