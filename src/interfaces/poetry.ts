@@ -1,11 +1,5 @@
 export interface IPoetryProps {
-    lines: string
-}
-  
-export interface IPoetryState {
-    error: any,
-    isLoaded: boolean,
-    poem: string[] 
+    poemNumber: number
 }
   
 export interface IPoem { 

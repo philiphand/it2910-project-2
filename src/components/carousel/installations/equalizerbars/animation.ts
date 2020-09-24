@@ -31,6 +31,4 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
     data.forEach((value, i)=> {
         drawBar(ctx, space * (i * 2), config.height - value, config.height, config.width / data.length, gradient);
     });
-
-    console.log("datapoints: ", data.length);
 }

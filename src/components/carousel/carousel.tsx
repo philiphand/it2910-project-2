@@ -64,6 +64,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handleNext = () => {
     if (hasNext()) {
       const nextIndex = currentItem.index + 1;
+      console.log(currentItem.index)
 
       setCurrentItem({
         index: nextIndex,
@@ -81,6 +82,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handlePrevious = () => {
     if (hasPrevious()) {
       const prevIndex = currentItem.index - 1;
+      console.log(currentItem.index)
 
       setCurrentItem({
         index: prevIndex,
@@ -189,7 +191,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         height={24}
       />
 
-      <Poetry lines="4"></Poetry>
+      <Poetry poemNumber={currentItem.index}></Poetry>
     </div>
   );
 };
