@@ -13,7 +13,6 @@ export class MediaAnalyser {
         this.analyser = this.audioCtx.createAnalyser();
         this.analyser.fftSize = 512;
         this.bufferLength = this.analyser.frequencyBinCount;
-        console.log(this.analyser.frequencyBinCount)
 
         this.source = this.audioCtx.createMediaElementSource(this.AudioElement);
         this.source.connect(this.analyser);

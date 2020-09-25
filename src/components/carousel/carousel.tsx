@@ -74,9 +74,8 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handleNext = () => {
     if (hasNext()) {
       const nextIndex = currentItem.index + 1;
-      setRandomPoem()
-      console.log(currentItem.index)
 
+      setRandomPoem()
       setCurrentItem({
         index: nextIndex,
         quick: false,
@@ -93,9 +92,8 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handlePrevious = () => {
     if (hasPrevious()) {
       const prevIndex = currentItem.index - 1;
+      
       setRandomPoem()
-      console.log(currentItem.index)
-
       setCurrentItem({
         index: prevIndex,
         quick: false,
