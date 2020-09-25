@@ -27,6 +27,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
     quick: false,
   });
   const [animatedItems, setAnimatedItems] = useState([startIndex]);
+  const [currentPoem, setCurrentPoem] = useState(0)
 
   useEffect(() => {
     const node = items.current;
@@ -61,9 +62,19 @@ export const Carousel: React.FunctionComponent<any> = () => {
 
   const hasPrevious = () => currentItem.index > 0;
 
+  const setRandomPoem = () => {
+    
+    let random:number = Math.floor(Math.random() * 29)
+    while (currentPoem === random) {
+      random = Math.floor(Math.random() * 29)
+    }
+    setCurrentPoem(random)
+  }
+
   const handleNext = () => {
     if (hasNext()) {
       const nextIndex = currentItem.index + 1;
+      setRandomPoem()
       console.log(currentItem.index)
 
       setCurrentItem({
@@ -82,6 +93,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handlePrevious = () => {
     if (hasPrevious()) {
       const prevIndex = currentItem.index - 1;
+      setRandomPoem()
       console.log(currentItem.index)
 
       setCurrentItem({
@@ -191,7 +203,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         height={24}
       />
 
-      <Poetry poemNumber={currentItem.index}></Poetry>
+      <Poetry poemNumber={currentPoem}></Poetry>
     </div>
   );
 };
