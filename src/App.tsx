@@ -6,28 +6,11 @@ import { MediaContext } from './mediaContext';
 import { Navigation } from './components/nav/navigation';
 import { DefaultInputs, InputContext } from './inputContext';
 import { IInstallationInput } from './interfaces/installations';
-const fetch = require("node-fetch");
 
 interface IAappState {
   mediaAnalyser: MediaAnalyser | null,
   inputs: IInstallationInput
 }
-
-async function fetchPoems(numberOfPoems:number, lines:number) {
-    const response = await fetch(`https://poetrydb.org/linecount,random/${lines};${numberOfPoems}/author,lines`)
-    const poems = await response.json()
-
-    if (poems.status) {
-    throw new Error(poems.reason)
-    }
-
-    for (let i = 0; i < numberOfPoems; i++) {
-    sessionStorage.setItem(i.toString(), JSON.stringify(poems[i]))
-    }
-
-    return true
-}
-fetchPoems(30, 4)
 
 class App extends Component<any, IAappState> {
   constructor(props: any) {
