@@ -8,6 +8,7 @@ import { OscilliscopeInstallation } from "./installations/oscilliscope/oscillisc
 import { HypnotizerInstallation } from "./installations/hypnotizer/template";
 import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
 import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
+import { DotsInstallation } from "./installations/dots/dots";
 
 import { Poetry } from "../poetry/poetry";
 
@@ -148,7 +149,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(1)}
           />
 
-          <FrequencyBallInstallation
+          <DotsInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -158,7 +159,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(2)}
           />
 
-          <EqualizerBarsInstallation
+          <FrequencyBallInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -168,7 +169,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(3)}
           />
 
-          <HypnotizerInstallation
+          <EqualizerBarsInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -176,6 +177,16 @@ export const Carousel: React.FunctionComponent<any> = () => {
             }}
             inputs={inputs}
             running={animatedItems.includes(4)}
+          />
+
+          <HypnotizerInstallation
+            config={{
+              width: itemWidth,
+              height: itemHeight,
+              mediaAnalyser,
+            }}
+            inputs={inputs}
+            running={animatedItems.includes(5)}
           />
 
           {/* duplicate */}
@@ -186,7 +197,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
               mediaAnalyser,
             }}
             inputs={inputs}
-            running={animatedItems.includes(5)}
+            running={animatedItems.includes(6)}
           />
           {/* ----------*/}
         </div>
