@@ -42,3 +42,19 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Documentation
+
+### Testing
+
+Testing er gjort med ts-jest og React Testing Library. Testene innebærer en snapshot-test av App.tsx og en DOM-test av diverse funksjonalitet i Input-menyen. 
+Alle testene kjøres via `npm test` og snapshot-filen kan oppdateres ved bruk av kommandoen `jest --updateSnapshot`.
+
+Jest klarer blant annet ikke å håndtere bilde- eller css-filer, så disse filene må mockes/erstattes under testingen. 
+Dette gjøres ved å definere filtypene i moduleNameMapper i både jest.config.js og i package.json, moduleNameMapper peker til hvilke mock-filer som skal erstatte de opprinnelige filene.
+
+Siden Fetch API ikke støttes av standard node.js er det nødvendig med en ekstra npm-pakke for å kjøre testene, pakken node-fetch løser dette problemet.
+
+
+
+
