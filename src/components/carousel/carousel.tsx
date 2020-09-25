@@ -64,11 +64,12 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const hasPrevious = () => currentItem.index > 0;
 
   const setRandomPoem = () => {
-    
     if (sessionStorage.getItem("1") !== null) {
-      let random:number = Math.floor(Math.random() * numberOfPoems - 1)
+      let random:number = Math.floor(Math.random() * (numberOfPoems - 1))
+      console.log(currentItem.index)
+      console.log(currentPoem)
       while (currentPoem === random) {
-        random = Math.floor(Math.random() * numberOfPoems - 1)
+        random = Math.floor(Math.random() * (numberOfPoems - 1))
       }
       setCurrentPoem(random)
     }
