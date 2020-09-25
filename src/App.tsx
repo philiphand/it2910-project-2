@@ -37,7 +37,6 @@ class App extends Component<any, IAappState> {
       </MediaContext.Provider>
     </section>
   );
-  
 }
 
 export default App
