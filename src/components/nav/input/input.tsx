@@ -21,12 +21,18 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
             <div className="color-picker-wrapper">
                 <div className="from">
                     <span>From</span>
-                    <ColorPicker color={inputs.rgbaFrom} updateColor={(color) => { updateInputs({...inputs, rgbaFrom: color}) } } toOrFrom="from"></ColorPicker>
+                    <ColorPicker color={inputs.rgbaFrom} updateColor={(color) => { 
+                        updateInputs({...inputs, rgbaFrom: color}) 
+                        localStorage.setItem('rgbaFrom', JSON.stringify(color))
+                    }} toOrFrom="from"></ColorPicker>
                 </div>
                 
                 <div className="to">
                     <span>To</span>
-                    <ColorPicker color={inputs.rgbaTo} updateColor={(color) => { updateInputs({...inputs, rgbaTo: color}) } } toOrFrom="to"></ColorPicker>
+                    <ColorPicker color={inputs.rgbaTo} updateColor={(color) => { 
+                        updateInputs({...inputs, rgbaTo: color}) 
+                        localStorage.setItem('rgbaTo', JSON.stringify(color))
+                    }} toOrFrom="to"></ColorPicker>
                 </div>
             </div>
         </section>
@@ -48,7 +54,10 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
 
         <section className="song">
             <h2>Song</h2>
-            <SongPicker song={inputs.song} updateSong={(song) => { updateInputs({...inputs, song: song})}} />
+            <SongPicker song={inputs.song} updateSong={(song) => { 
+                updateInputs({...inputs, song: song})
+                localStorage.setItem('song', song)
+                }} />
         </section>
     </div>)
 }
