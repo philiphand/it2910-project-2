@@ -10,7 +10,7 @@ import { FrequencyBallInstallation } from "./installations/frequencyball/frequen
 import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
 import { DotsInstallation } from "./installations/dots/dots";
 
-import { Poetry } from "../poetry/poetry";
+import { Poetry, numberOfPoems } from "../poetry/poetry";
 
 import "./carousel.css";
 
@@ -65,11 +65,13 @@ export const Carousel: React.FunctionComponent<any> = () => {
 
   const setRandomPoem = () => {
     
-    let random:number = Math.floor(Math.random() * 29)
-    while (currentPoem === random) {
-      random = Math.floor(Math.random() * 29)
+    if (sessionStorage.getItem("1") !== null) {
+      let random:number = Math.floor(Math.random() * numberOfPoems - 1)
+      while (currentPoem === random) {
+        random = Math.floor(Math.random() * numberOfPoems - 1)
+      }
+      setCurrentPoem(random)
     }
-    setCurrentPoem(random)
   }
 
   const handleNext = () => {

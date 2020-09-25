@@ -27,7 +27,9 @@ async function fetchPoems(numberOfPoems:number, lines:number) {
 
   return true
 }
-fetchPoems(30, 4)
+
+export const numberOfPoems = 30
+fetchPoems(numberOfPoems, 4)
 
 function getPoem(poemNumber:number) {
   const poem = sessionStorage.getItem(poemNumber.toString())
