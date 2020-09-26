@@ -5,6 +5,13 @@
 ### Hvordan kjøre applikasjonen
 Applikasjonen krever kun `npm install` og deretter `npm start` for å kjøres.
 
+### Kunstinstallasjoner
+Alle installasjonene er utviklet i Canvas og benytter seg av [AnalyserNode.getByteFrequencyData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData), denne funksjonen returnerer data om sangene som spilles.
+Denne dataen kommer i form av decibel-verdiene til 256 frekvenser, som brukes av animasjonene til å visualisere lydbildet i sangen på hver sin unike måte.
+
+Animasjonene kan endres i form av flere forskjellige valg; farge, kompleksitet og sang.
+Alle disse valgene lagres i og hentes fra localStorage.
+
 ### Dikt fra PoetryDB
 Diktene hentes fra [PoetryDB](https://poetrydb.org/index.html) via [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 Den opprinnelige planen var å sende en ny HTTP request ved hvert bytte av installasjon, men dette viste seg til å være en dårlig løsning ettersom at det kan ta flere sekunder før man får respons.
