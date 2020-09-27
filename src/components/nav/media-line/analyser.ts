@@ -9,7 +9,9 @@ export class MediaAnalyser {
     bufferLength: number;
 
     constructor(private AudioElement: HTMLAudioElement) {
-        this.audioCtx = new (window.AudioContext)();
+        const audioContext = window.AudioContext || (window as any).webkitAudioContext;
+
+        this.audioCtx = new (audioContext)();
         this.analyser = this.audioCtx.createAnalyser();
         this.analyser.fftSize = 512;
         this.bufferLength = this.analyser.frequencyBinCount;
