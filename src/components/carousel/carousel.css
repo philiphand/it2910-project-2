@@ -25,11 +25,17 @@
 }
 
 .next-item {
-    margin-left: 50px;
+    position: absolute;
+    z-index: 8;
+    top: calc(50% - 20px);
+    right: 20px;
 }
 
 .previous-item {
-    margin-right: 50px;
+    position: absolute;
+    z-index: 8;
+    top: calc(50% - 20px);
+    left: 20px;
     -webkit-transform:rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -38,7 +44,6 @@
 }
 
 .view-port {
-    width: 1000px;
     overflow: hidden;
 }
 
@@ -47,5 +52,11 @@
     flex-direction: row;
     width: fit-content;
     transition: transform 800ms;
-    transform: translateX(-1000px);
+}
+
+@media only screen and (max-width: 600px) { 
+    .waiting-for-media {
+        font-size: 28px;
+        text-align: center;
+    }
 }

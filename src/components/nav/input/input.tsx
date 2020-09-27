@@ -15,7 +15,7 @@ export const InstallationInput: React.FunctionComponent<IInputComponentProps> = 
     let inputs = useContext(InputContext)
     let media = useContext(MediaContext)
 
-    return (<div className="input">
+    return (<div className="input-wrapper">
         <section className="colors">
             <h2>Colors</h2>
             <div className="color-picker-wrapper">

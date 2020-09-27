@@ -22,13 +22,13 @@ export const draw = (timing: IAnimationTiming, config: IInstallationConfig, inpu
     ctx.clearRect(0, 0, config.width, config.height)
 
     const data = config.mediaAnalyser.getByteFrequencyData()
-    const space = config.width / data.length;
+    const space = config.width / data.length
 
     const gradient: CanvasGradient = ctx.createLinearGradient(0,config.height/2, config.width, config.height/2)
     gradient.addColorStop(0, ColorUtil.rgbaString(inputs.rgbaFrom))
     gradient.addColorStop(1, ColorUtil.rgbaString(inputs.rgbaTo))
     
     data.forEach((value, i)=> {
-        drawBar(ctx, space * (i * 2), config.height - value, config.height, config.width / data.length, gradient);
-    });
+        drawBar(ctx, space * (i * 2), config.height - (value/255)*config.height, config.height, config.width / data.length, gradient)
+    })
 }

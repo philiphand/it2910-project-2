@@ -7,5 +7,7 @@ export const HypnotizerInstallation:React.FunctionComponent<IInstallationProps> 
     const canvasRef = React.createRef<HTMLCanvasElement>()
     useCanvasAnimation(config, inputs, running, draw, canvasRef)
 
-    return (<canvas width={config.width} height={config.height} ref={canvasRef}></canvas>)
+    return (<div className="installation">
+        <canvas width={config.width} height={config.height} ref={canvasRef}></canvas>
+    </div>)
 }
