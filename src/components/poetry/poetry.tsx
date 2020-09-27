@@ -1,32 +1,42 @@
-import React, { useState } from 'react';
-import { useAsyncEffect } from '../../hooks/asyncEffekt';
-import { IPoem, IPoetryProps } from '../../interfaces/poetry';
+import React from 'react';
+import { IPoetryProps, IPoem } from '../../interfaces/poetry';
 import "./poetry.css"
+const fetch = require("node-fetch");
 
-export const Poetry: React.FunctionComponent<IPoetryProps> = ({lines}) => {
-  let [poem, setPoem] = useState<IPoem | null>(null)
-  let [error, setError] = useState<Error | null>(null)
+async function fetchPoems(numberOfPoems:number, lines:number) {
 
-  useAsyncEffect(async () => {
-    try {
-      const response = await fetch(`https://poetrydb.org/linecount,random/${lines};1/author,lines`)
-      const json = await response.json()
+  //Introductory poem, only shown if animation is played before API loads
+  //https://www.familyfriendpoems.com/poems/teen/music/
+  sessionStorage.setItem("0", JSON.stringify({ author: "Bryanna T. Perkins", lines: [
+      "Music is the ocean",
+      "That pulls me to the shore.",
+      "Music is the rhythm",
+      "That moves me to the core."
+    ]}))
+    
+  const response = await fetch(`https://poetrydb.org/linecount,random/${lines};${numberOfPoems}/author,lines`)
+  const poems = await response.json()
 
-      if (json.status) {
-        throw new Error(json.reason)
-      }
+  if (poems.status) {
+  throw new Error(poems.reason)
+  }
 
-      setPoem(json[0])
-    }
-    catch(ex) {
-      setError(ex)
-    }
-  }, [lines])
+  for (let i = 0; i < numberOfPoems; i++) {
+  sessionStorage.setItem(i.toString(), JSON.stringify(poems[i]))
+  }
 
-  if (error)
-    return (<div>Error: {error.message}</div>)
-  else if (poem)
-    return (<div className="poem">{poem.lines.join("\n")}</div>)
-  else
-    return (<div>Loading...</div>)
+  return true
+}
+
+export const numberOfPoems = 30
+fetchPoems(numberOfPoems, 4)
+
+function getPoem(poemNumber:number) {
+  const poem = sessionStorage.getItem(poemNumber.toString())
+  return(poem !== null ? poem : "No poems found")
+}
+
+export const Poetry: React.FunctionComponent<IPoetryProps> = ({poemNumber}) => {
+  const poem:IPoem = JSON.parse(getPoem(poemNumber))
+  return (<div className="poem">{poem.lines.join("\n")}</div>)
 }

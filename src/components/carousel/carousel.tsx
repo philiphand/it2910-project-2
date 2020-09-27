@@ -5,12 +5,12 @@ import { InputContext } from "../../inputContext";
 import NextIcon from "../../img/next.svg";
 
 import { OscilliscopeInstallation } from "./installations/oscilliscope/oscilliscope";
-import { Hypnotizer } from "./installations/hypnotizer/template";
+import { HypnotizerInstallation } from "./installations/hypnotizer/template";
 import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
 import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
 import { DotsInstallation } from "./installations/dots/dots";
 
-import { Poetry } from "../poetry/poetry";
+import { Poetry, numberOfPoems } from "../poetry/poetry";
 
 import "./carousel.css";
 
@@ -28,6 +28,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
     quick: false,
   });
   const [animatedItems, setAnimatedItems] = useState([startIndex]);
+  const [currentPoem, setCurrentPoem] = useState(0)
 
   useEffect(() => {
     const node = items.current;
@@ -62,10 +63,23 @@ export const Carousel: React.FunctionComponent<any> = () => {
 
   const hasPrevious = () => currentItem.index > 0;
 
+  const setRandomPoem = () => {
+    if (sessionStorage.getItem("1") !== null) {
+      let random:number = Math.floor(Math.random() * (numberOfPoems - 1))
+      console.log(currentItem.index)
+      console.log(currentPoem)
+      while (currentPoem === random) {
+        random = Math.floor(Math.random() * (numberOfPoems - 1))
+      }
+      setCurrentPoem(random)
+    }
+  }
+
   const handleNext = () => {
     if (hasNext()) {
       const nextIndex = currentItem.index + 1;
 
+      setRandomPoem()
       setCurrentItem({
         index: nextIndex,
         quick: false,
@@ -82,7 +96,8 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const handlePrevious = () => {
     if (hasPrevious()) {
       const prevIndex = currentItem.index - 1;
-
+      
+      setRandomPoem()
       setCurrentItem({
         index: prevIndex,
         quick: false,
@@ -116,7 +131,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
       <div className="view-port">
         <div className="items" ref={items}>
           {/* duplicate */}
-          <Hypnotizer
+          <HypnotizerInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -167,7 +182,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
             running={animatedItems.includes(4)}
           />
 
-          <Hypnotizer
+          <HypnotizerInstallation
             config={{
               width: itemWidth,
               height: itemHeight,
@@ -200,7 +215,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         height={24}
       />
 
-      <Poetry lines="4"></Poetry>
+      <Poetry poemNumber={currentPoem}></Poetry>
     </div>
   );
 };
