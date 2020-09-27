@@ -15,7 +15,7 @@ exports[`App renders correctly 1`] = `
       data-testid="inputMenu"
     >
       <div
-        className="input"
+        className="input-wrapper"
       >
         <section
           className="colors"
