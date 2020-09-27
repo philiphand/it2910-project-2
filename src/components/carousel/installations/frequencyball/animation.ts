@@ -9,7 +9,7 @@ export const draw = (animationTiming: IAnimationTiming, config: IInstallationCon
     }
     const minReach = 20
     
-    ctx.clearRect(0, 0, 1000, 1000)
+    ctx.clearRect(0, 0, config.width, config.height)
     
     let data = config.mediaAnalyser.getByteFrequencyData()
     

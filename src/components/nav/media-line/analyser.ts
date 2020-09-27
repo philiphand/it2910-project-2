@@ -14,6 +14,9 @@ export class MediaAnalyser {
         this.analyser.fftSize = 512;
         this.bufferLength = this.analyser.frequencyBinCount;
 
+        //Prevents distortion and clipping
+        this.AudioElement.volume = 0.5;
+
         this.source = this.audioCtx.createMediaElementSource(this.AudioElement);
         this.source.connect(this.analyser);
         this.analyser.connect(this.audioCtx.destination);
@@ -39,8 +42,7 @@ export class MediaAnalyser {
         if (this.analyser !== null && this.analyserReady) {
             this.analyser.getByteTimeDomainData(this.byteTimeDomainData)
             return this.byteTimeDomainData
-        }
-        else {
+        } else {
             return new Uint8Array(0)
         }
     }

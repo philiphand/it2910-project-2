@@ -5,7 +5,7 @@ import { InputContext } from "../../inputContext";
 import NextIcon from "../../img/next.svg";
 
 import { OscilliscopeInstallation } from "./installations/oscilliscope/oscilliscope";
-import { HypnotizerInstallation } from "./installations/hypnotizer/template";
+import { HypnotizerInstallation } from "./installations/hypnotizer/hypnotizer";
 import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
 import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
 import { DotsInstallation } from "./installations/dots/dots";
@@ -15,19 +15,29 @@ import { Poetry, numberOfPoems } from "../poetry/poetry";
 import "./carousel.css";
 
 export const Carousel: React.FunctionComponent<any> = () => {
-  const itemWidth = 1000;
-  const itemHeight = 400;
   const transitionTimeMs = 800;
   const startIndex = 1; // need to offset this by itemWidth in the css
 
   const mediaAnalyser = useContext(MediaContext);
   const inputs = useContext(InputContext);
+
   const items = useRef<HTMLDivElement>(null);
-  const [currentItem, setCurrentItem] = useState({
-    index: startIndex,
-    quick: false,
-  });
+  const wrapper = useRef<HTMLDivElement>(null);
+
+  const [currentItem, setCurrentItem] = useState({ index: startIndex, quick: false });
   const [animatedItems, setAnimatedItems] = useState([startIndex]);
+  const [viewportSize, setViewportSize] = useState({ width: 1000, height: 1000 })
+
+  useEffect(() => {
+    if (wrapper.current !== null) {
+      setViewportSize({ width: wrapper.current.clientWidth, height: wrapper.current.clientHeight })
+      window.addEventListener("resize", () => {
+        if (wrapper.current !== null)
+          setViewportSize({ width: wrapper.current.clientWidth, height: wrapper.current.clientHeight })
+      })
+    }
+  }, [mediaAnalyser, setViewportSize])
+
   const [currentPoem, setCurrentPoem] = useState(0)
 
   useEffect(() => {
@@ -36,7 +46,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
     if (!node) return;
 
     node.style.transitionDuration = currentItem.quick ? "0.0s" : "0.8s";
-    node.style.transform = `translate(-${itemWidth * currentItem.index}px)`;
+    node.style.transform = `translate(-${viewportSize.width * currentItem.index}px)`;
 
     // handles resetting the carousel for the infinite effect
     if (currentItem.index === node.children.length - 1) {
@@ -53,7 +63,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         setAnimatedItems([node.children.length - 2]);
       }, transitionTimeMs);
     }
-  }, [currentItem]);
+  }, [currentItem, viewportSize]);
 
   const hasNext = () => {
     const length = items.current?.children.length;
@@ -66,8 +76,6 @@ export const Carousel: React.FunctionComponent<any> = () => {
   const setRandomPoem = () => {
     if (sessionStorage.getItem("1") !== null) {
       let random:number = Math.floor(Math.random() * (numberOfPoems - 1))
-      console.log(currentItem.index)
-      console.log(currentPoem)
       while (currentPoem === random) {
         random = Math.floor(Math.random() * (numberOfPoems - 1))
       }
@@ -117,8 +125,14 @@ export const Carousel: React.FunctionComponent<any> = () => {
     );
   }
 
+  const installationConfig = {
+    width: viewportSize.width,
+    height: viewportSize.height,
+    mediaAnalyser,
+  }
+
   return (
-    <div className="carousel">
+    <div className="carousel" ref={wrapper}>
       <img
         className="previous-item"
         src={NextIcon}
@@ -132,73 +146,45 @@ export const Carousel: React.FunctionComponent<any> = () => {
         <div className="items" ref={items}>
           {/* duplicate */}
           <HypnotizerInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(0)}
           />
           {/* ----------*/}
 
           <OscilliscopeInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(1)}
           />
 
           <DotsInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(2)}
-          />
+            ></DotsInstallation>
 
           <FrequencyBallInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(3)}
           />
 
           <EqualizerBarsInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(4)}
           />
 
           <HypnotizerInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(5)}
           />
 
           {/* duplicate */}
           <OscilliscopeInstallation
-            config={{
-              width: itemWidth,
-              height: itemHeight,
-              mediaAnalyser,
-            }}
+            config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(6)}
           />
