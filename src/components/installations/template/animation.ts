@@ -1,5 +1,5 @@
-import { IAnimationTiming } from "../../../../hooks/animation"
-import { IInstallationConfig, IInstallationInput } from "../../../../interfaces/installations"
+import { IAnimationTiming } from "../../../hooks/animation"
+import { IInstallationConfig, IInstallationInput } from "../../../interfaces/installations"
 
 export interface ITemplateInputs extends IInstallationInput {
     rgbTweenProgress: number

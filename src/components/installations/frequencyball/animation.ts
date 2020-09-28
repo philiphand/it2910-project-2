@@ -1,6 +1,6 @@
-import { IAnimationTiming } from "../../../../hooks/animation"
-import { IInstallationConfig, IInstallationInput } from "../../../../interfaces/installations"
-import { ColorUtil } from "../../../../util/colors"
+import { IAnimationTiming } from "../../../hooks/animation"
+import { IInstallationConfig, IInstallationInput } from "../../../interfaces/installations"
+import { ColorUtil } from "../../../util/colors"
 
 export const draw = (animationTiming: IAnimationTiming, config: IInstallationConfig, inputs: IInstallationInput, ctx: CanvasRenderingContext2D) => {
     const center = {

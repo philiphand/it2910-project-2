@@ -5,4 +5,7 @@
 .color-picker .preview {
     width: 30px;
     height: 30px;
+    margin-top: 5px;
+    border-radius: 50%;
+    margin: 0 auto;
 }

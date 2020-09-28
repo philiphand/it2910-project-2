@@ -1,6 +1,6 @@
 import React from 'react'
-import { IInstallationProps } from '../../../../interfaces/installations'
-import { useCanvasAnimation } from '../../../../hooks/animation'
+import { IInstallationProps } from '../../../interfaces/installations'
+import { useCanvasAnimation } from '../../../hooks/animation'
 
 import { draw } from './animation'
 

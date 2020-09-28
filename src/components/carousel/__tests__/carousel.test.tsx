@@ -8,7 +8,7 @@ import { Carousel } from "../carousel";
 
 describe("Carousel", () => {
   test("Renders text if no mediaAnalyser is set", () => {
-    const { getByText } = render(<Carousel />);
+    const { getByText } = render(<Carousel viewport={{ width: 1280, height: 720 }} />);
     const linkElement = getByText(/Press play to see the animation/i);
     expect(linkElement).toBeInTheDocument();
   });

@@ -1,6 +1,6 @@
-import { IAnimationTiming } from "../../../../hooks/animation"
-import { IInstallationConfig, IInstallationInput } from "../../../../interfaces/installations"
-import { ColorUtil } from "../../../../util/colors"
+import { IAnimationTiming } from "../../../hooks/animation"
+import { IInstallationConfig, IInstallationInput } from "../../../interfaces/installations"
+import { ColorUtil } from "../../../util/colors"
 
 function drawCircle(radius: number, color: CanvasGradient, ctx: CanvasRenderingContext2D, x:number, y:number, linewidth:number) {
     ctx.beginPath();
