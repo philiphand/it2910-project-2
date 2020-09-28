@@ -10,14 +10,21 @@ Prosjektmalen er opprettet ved hjelp av kommadoen `npx create-react-app my-app -
 Alle komponentene med unntak av App.tsx er funksjonelle komponenter, mens App.tsx er en klassekomponent.
 Grunnen til dette er at funksjonelle komponenter sammen med React Hooks krever mindre kode og oppnår det samme som en klassekomponent ville gjort.
 
-**TODO:** Utdype bruken av React Context
+Vi bruker React context for tilstandskontroll i to tilfeller. Det ene tilfellet er for å tilgjengeliggjøre MediaAnalyser klassen, som håndterer analyse av lydsporene som spilles, til alle komponentene i karusellen.
+Det andre tilfellet er for å tilgjengeliggjøre input state til hele applikasjonen.
+
+I MediaAnalyser sitt tilfellet hadde vi nok sluppet unna med å drille ned med props, men dersom applikasjonen vokser og blir mer kompleks kan det være fordelaktig å ha det tilgjengelig som context.
 
 ### Responsivt web design
-**TODO:** Forklare hvordan dette er oppnådd
+Applikasjonen skal skalere på forskjellige flater. For å håndtere font-størrelser og layout bruker vi media queries som endrer på regelsettet om vi nærmer oss mobilstørrelse. Vi startet på desktop nivå og gjorde tilpasninger for mobil på et senere stadie. Vi kunne også ha startet å utvikle for mobil og endret det til en større layout senere. I og med at applikasjonen er såpass enkel gjør det liten forskjell, men i en mer kompleks applikasjon kan det være hensiktsmessig å jobbe "mobile first".
+
+Skaleringen av canvas er litt mindre elegant. Her bruker vi en wrapper rundt karusell komponenten som lytter på resize events på vinduet. På resize sjekker vi størrelsen på animasjonsvinduet (øvre bit av layouten) og skalerer så karusellen deretter (den tar in viewport sin størrelse som props). En ulempe er at vi får svært dårlig ytelse når en resizer vinduet, da det fyres mange resize events. Dette kunne vært mitigert med en såkalt "debounce" funksjon, som ikke rekalkulerte layout på hver eneste resize event.
+
+Overordnet er layouten basert på både css grid og flex, som gjør det svært enkelt å få elementene til å flyte på en god måte for mange forskjellige flater.
 
 ### Kunstinstallasjoner
-Alle installasjonene er utviklet i Canvas og benytter seg av [AnalyserNode.getByteFrequencyData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData), denne funksjonen returnerer data om sangene som spilles.
-Dataen kommer i form av et array med decibel-verdiene til 256 frekvenser, som brukes av animasjonene til å visualisere lydbildet i sangen på hver sin unike måte.
+Alle installasjonene er utviklet i Canvas og benytter seg av [AnalyserNode.getByteFrequencyData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData) samt / eller [AnalyserNode.getByteTimeDomainData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData), disse funksjonen returnerer data om lydsporene som spilles.
+Dataen kommer i form av et array med decibel-verdiene til 256 frekvenser, som brukes av animasjonene til å visualisere lydsporet på hver sin unike måte.
 
 Animasjonene kan endres i form av flere forskjellige valg; farge, kompleksitet og sang. Vi valgte disse alternativene fordi de skalerer godt med alle animasjonene.
 Valgene lagres i og hentes fra localStorage. 
