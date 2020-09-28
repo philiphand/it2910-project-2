@@ -22,6 +22,14 @@ Skaleringen av canvas er litt mindre elegant. Her bruker vi en wrapper rundt kar
 
 Overordnet er layouten basert på både css grid og flex, som gjør det svært enkelt å få elementene til å flyte på en god måte for mange forskjellige flater.
 
+### Karusell
+Karusellen er komponenten hvor alle kunstinstallasjonene befinner seg. Denne gjør det mulig å smidig bytte mellom
+kunstinstallasjonene. Implementasjonen er bygd opp med en illusjon av infinite scroll som tillater deg å scrolle evig i begge retninger gjennom kunstinstallasjonene. For å få til dette er den første og siste kunstinstallasjon i karusellen duplisert i hver sin ende (index 0 er den dupliserte av index -2, index -1 er den dupliserte av index 1).
+
+Når man så blar i karusellen vil man se en glide transition til høyre/venstre alt etter som hvilken vei man blar. Hvis man kommer til en duplisert kunstinstallasjon vil man etter den første transition "hoppe" tilbake til den originale kunstinstallasjonen. Dette gir en illusjon av at man kan fortsette å bla vel om man egentlig blar i fra start.
+
+Her brukes også Context APIet for å hente state fra øverste nivået i appen. Disse blir så sendt ned via propdrilling til kunstinstallasjonene.
+
 ### Kunstinstallasjoner
 Alle installasjonene er utviklet i Canvas og benytter seg av [AnalyserNode.getByteFrequencyData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData) samt / eller [AnalyserNode.getByteTimeDomainData()](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData), disse funksjonen returnerer data om lydsporene som spilles.
 Dataen kommer i form av et array med decibel-verdiene til 256 frekvenser, som brukes av animasjonene til å visualisere lydsporet på hver sin unike måte.
