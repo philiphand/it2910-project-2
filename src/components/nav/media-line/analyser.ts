@@ -13,7 +13,14 @@ export class MediaAnalyser {
 
         this.audioCtx = new (audioContext)();
         this.analyser = this.audioCtx.createAnalyser();
-        this.analyser.fftSize = 512;
+
+        let storedComplexity = localStorage.getItem("complexity")
+
+        if (typeof storedComplexity === "string")
+            this.analyser.fftSize = Math.pow(2, parseInt(storedComplexity)+1);
+        else
+            this.analyser.fftSize = 512;
+        
         this.bufferLength = this.analyser.frequencyBinCount;
 
         //Prevents distortion and clipping

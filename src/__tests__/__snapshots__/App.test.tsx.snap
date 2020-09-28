@@ -5,9 +5,13 @@ exports[`App renders correctly 1`] = `
   id="app"
 >
   <div
-    className="waiting-for-media"
+    className="carousel-responsive-wrapper"
   >
-    Press play to see the animation
+    <div
+      className="waiting-for-media"
+    >
+      Press play to see the animation
+    </div>
   </div>
   <nav>
     <div
@@ -80,11 +84,12 @@ exports[`App renders correctly 1`] = `
                   </label>
                   <input
                     data-testid="fromColorA"
-                    max="255"
+                    max="100"
                     min="0"
                     onChange={[Function]}
+                    step="1"
                     type="range"
-                    value={0.9}
+                    value={90}
                   />
                 </div>
                 <div
@@ -152,11 +157,12 @@ exports[`App renders correctly 1`] = `
                   </label>
                   <input
                     data-testid="toColorA"
-                    max="255"
+                    max="100"
                     min="0"
                     onChange={[Function]}
+                    step="1"
                     type="range"
-                    value={0.9}
+                    value={90}
                   />
                 </div>
                 <div

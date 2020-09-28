@@ -29,7 +29,7 @@ export const ColorPicker: React.FunctionComponent<IColorPickerProps> = ({color, 
 
             <div>
                 <label>A</label>
-                <input type="range" min="0" max="255" value={color.a} onChange={(e) => updateColor({...color, a: parseInt(e.target.value)})} data-testid={toOrFrom + "ColorA"}></input>
+                <input type="range" min="0" max="100" step="1" value={color.a*100} onChange={(e) => updateColor({...color, a: parseInt(e.target.value)*0.01})} data-testid={toOrFrom + "ColorA"}></input>
             </div>
 
             <div className="preview" style={{ background: ColorUtil.rgbaString(color) }} data-testid={toOrFrom + "ColorPreview"}></div>

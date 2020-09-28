@@ -2,41 +2,32 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { MediaContext } from "../../mediaContext";
 import { InputContext } from "../../inputContext";
 
-import NextIcon from "../../img/next.svg";
-
-import { OscilliscopeInstallation } from "./installations/oscilliscope/oscilliscope";
-import { HypnotizerInstallation } from "./installations/hypnotizer/hypnotizer";
-import { FrequencyBallInstallation } from "./installations/frequencyball/frequency-ball";
-import { EqualizerBarsInstallation } from "./installations/equalizerbars/equalizerbars";
-import { DotsInstallation } from "./installations/dots/dots";
+import { OscilliscopeInstallation } from "../installations/oscilliscope/oscilliscope";
+import { HypnotizerInstallation } from "../installations/hypnotizer/hypnotizer";
+import { FrequencyBallInstallation } from "../installations/frequencyball/frequency-ball";
+import { EqualizerBarsInstallation } from "../installations/equalizerbars/equalizerbars";
+import { DotsInstallation } from "../installations/dots/dots";
 
 import { Poetry, numberOfPoems } from "../poetry/poetry";
 
+import NextIcon from "../../img/next.svg";
 import "./carousel.css";
 
-export const Carousel: React.FunctionComponent<any> = () => {
+export interface ICarouselProps {
+  viewport: { width: number, height: number }
+}
+
+export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) => {
   const transitionTimeMs = 800;
-  const startIndex = 1; // need to offset this by itemWidth in the css
+  const startIndex = 1;
 
   const mediaAnalyser = useContext(MediaContext);
   const inputs = useContext(InputContext);
 
   const items = useRef<HTMLDivElement>(null);
-  const wrapper = useRef<HTMLDivElement>(null);
 
   const [currentItem, setCurrentItem] = useState({ index: startIndex, quick: false });
   const [animatedItems, setAnimatedItems] = useState([startIndex]);
-  const [viewportSize, setViewportSize] = useState({ width: 1000, height: 1000 })
-
-  useEffect(() => {
-    if (wrapper.current !== null) {
-      setViewportSize({ width: wrapper.current.clientWidth, height: wrapper.current.clientHeight })
-      window.addEventListener("resize", () => {
-        if (wrapper.current !== null)
-          setViewportSize({ width: wrapper.current.clientWidth, height: wrapper.current.clientHeight })
-      })
-    }
-  }, [mediaAnalyser, setViewportSize])
 
   const [currentPoem, setCurrentPoem] = useState(0)
 
@@ -46,7 +37,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
     if (!node) return;
 
     node.style.transitionDuration = currentItem.quick ? "0.0s" : "0.8s";
-    node.style.transform = `translate(-${viewportSize.width * currentItem.index}px)`;
+    node.style.transform = `translate(-${viewport.width * currentItem.index}px)`;
 
     // handles resetting the carousel for the infinite effect
     if (currentItem.index === node.children.length - 1) {
@@ -63,7 +54,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         setAnimatedItems([node.children.length - 2]);
       }, transitionTimeMs);
     }
-  }, [currentItem, viewportSize]);
+  }, [currentItem, viewport]);
 
   const hasNext = () => {
     const length = items.current?.children.length;
@@ -126,13 +117,13 @@ export const Carousel: React.FunctionComponent<any> = () => {
   }
 
   const installationConfig = {
-    width: viewportSize.width,
-    height: viewportSize.height,
-    mediaAnalyser,
+    width: viewport.width,
+    height: viewport.height,
+    mediaAnalyser
   }
 
   return (
-    <div className="carousel" ref={wrapper}>
+    <div className="carousel">
       <img
         className="previous-item"
         src={NextIcon}
@@ -142,7 +133,7 @@ export const Carousel: React.FunctionComponent<any> = () => {
         height={24}
       />
 
-      <div className="view-port">
+      <div className="view-port" style={{width: `${viewport.width}px`, height: `${viewport.height}px`}}>
         <div className="items" ref={items}>
           {/* duplicate */}
           <HypnotizerInstallation

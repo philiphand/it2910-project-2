@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Carousel } from './components/carousel/carousel';
 import { MediaAnalyser } from './components/nav/media-line/analyser';
 import { MediaContext } from './mediaContext';
 import { Navigation } from './components/nav/navigation';
 import { DefaultInputs, InputContext } from './inputContext';
 import { IInstallationInput } from './interfaces/installations';
+import { ResponsiveCarousel } from './components/carousel/responsive-carousel';
 
 interface IAappState {
   mediaAnalyser: MediaAnalyser | null,
@@ -26,7 +26,7 @@ class App extends Component<any, IAappState> {
     <section id="app">
       <MediaContext.Provider value={this.state.mediaAnalyser}>
         <InputContext.Provider value={this.state.inputs}>
-          <Carousel />
+          <ResponsiveCarousel />
 
           <Navigation
             setMediaAnalyser={(mediaAnalyser) => this.setState({ ...this.state, mediaAnalyser }) }
