@@ -129,8 +129,8 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
         src={NextIcon}
         onClick={handlePrevious}
         alt={"Previous item"}
-        width={24}
-        height={24}
+        width={50}
+        height={50}
       />
 
       <div className="view-port" style={{ width: `${viewport.width}px`, height: `${viewport.height}px` }}>
@@ -188,8 +188,8 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
         src={NextIcon}
         onClick={handleNext}
         alt={"Next item"}
-        width={24}
-        height={24}
+        width={50}
+        height={50}
       />
 
       <Poetry poemNumber={currentPoem}></Poetry>
