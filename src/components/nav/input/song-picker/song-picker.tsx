@@ -8,11 +8,12 @@ export interface ISongPickerProps {
 }
 
 const songs = [
+    '/media/The Light - Blackmill.mp3',
     '/media/Back To The Future Jellyfish - NoMBe.mp3',
     '/media/Dreams (2004 Remaster).mp3',
     '/media/Lofi Mallet - Kwon.mp3',
     '/media/Messiah (by Handel) - Handel.mp3',
-    '/media/Toccata in D minor (by Bach) - Bach.mp3',
+    '/media/Toccata in D minor (by Bach) - Bach.mp3'
 ]
 
 export const SongPicker: React.FunctionComponent<ISongPickerProps> = ({ song, updateSong }) => {
@@ -20,7 +21,7 @@ export const SongPicker: React.FunctionComponent<ISongPickerProps> = ({ song, up
         <div className='song-picker'>
             <select name='songs' id='songs' defaultValue={song} onChange={(e) => updateSong(e.target.value)}>
                 {songs.map(
-                    (song, i) => <option value={song} key={i}>{song.replace(/^.+\/(.+)\.\S+$/, '$1')}</option>
+                    (song, i) => <option style={{ backgroundColor: "black" }} value={song} key={i}>{song.replace(/^.+\/(.+)\.\S+$/, '$1')}</option>
                 )}
             </select>
         </div>)

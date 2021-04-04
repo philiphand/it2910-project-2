@@ -66,7 +66,7 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
 
   const setRandomPoem = () => {
     if (sessionStorage.getItem("1") !== null) {
-      let random:number = Math.floor(Math.random() * (numberOfPoems - 1))
+      let random: number = Math.floor(Math.random() * (numberOfPoems - 1))
       while (currentPoem === random) {
         random = Math.floor(Math.random() * (numberOfPoems - 1))
       }
@@ -95,7 +95,7 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
   const handlePrevious = () => {
     if (hasPrevious()) {
       const prevIndex = currentItem.index - 1;
-      
+
       setRandomPoem()
       setCurrentItem({
         index: prevIndex,
@@ -133,7 +133,7 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
         height={24}
       />
 
-      <div className="view-port" style={{width: `${viewport.width}px`, height: `${viewport.height}px`}}>
+      <div className="view-port" style={{ width: `${viewport.width}px`, height: `${viewport.height}px` }}>
         <div className="items" ref={items}>
           {/* duplicate */}
           <HypnotizerInstallation
@@ -149,35 +149,35 @@ export const Carousel: React.FunctionComponent<ICarouselProps> = ({ viewport }) 
             running={animatedItems.includes(1)}
           />
 
-          <DotsInstallation
+          {/* <DotsInstallation
             config={installationConfig}
             inputs={inputs}
             running={animatedItems.includes(2)}
-            ></DotsInstallation>
+            ></DotsInstallation> */}
 
           <FrequencyBallInstallation
             config={installationConfig}
             inputs={inputs}
-            running={animatedItems.includes(3)}
+            running={animatedItems.includes(2)}
           />
 
           <EqualizerBarsInstallation
             config={installationConfig}
             inputs={inputs}
-            running={animatedItems.includes(4)}
+            running={animatedItems.includes(3)}
           />
 
           <HypnotizerInstallation
             config={installationConfig}
             inputs={inputs}
-            running={animatedItems.includes(5)}
+            running={animatedItems.includes(4)}
           />
 
           {/* duplicate */}
           <OscilliscopeInstallation
             config={installationConfig}
             inputs={inputs}
-            running={animatedItems.includes(6)}
+            running={animatedItems.includes(5)}
           />
           {/* ----------*/}
         </div>
