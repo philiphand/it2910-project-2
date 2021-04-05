@@ -6,7 +6,6 @@ import { OscilliscopeInstallation } from "../installations/oscilliscope/oscillis
 import { HypnotizerInstallation } from "../installations/hypnotizer/hypnotizer";
 import { FrequencyBallInstallation } from "../installations/frequencyball/frequency-ball";
 import { EqualizerBarsInstallation } from "../installations/equalizerbars/equalizerbars";
-import { DotsInstallation } from "../installations/dots/dots";
 
 import { Poetry, numberOfPoems } from "../poetry/poetry";
 
